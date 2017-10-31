@@ -8,6 +8,9 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {"source": "/pick", "function": "pick"}
     ]
   }
 }

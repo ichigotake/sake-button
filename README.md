@@ -1,23 +1,26 @@
 # sake-button
 
+[居酒屋選びで困ったときに押すボタン](https://sake-button-cbb77.firebaseapp.com)
+
 ## Getting started
 
-### Setup
+### セットアップ
 
 ```bash
 $ npm install -g firebase-tools
-```
-
-### Deploy
-
-```bash
+$ cd functions && npm install && cd ..
 $ firebase login
-$ firebase deploy --project <projectId>
+$ firebase use --add
 ```
 
-### Development on localhost
+### サーバーを起動する
 
 ```bash
 $ firebase serve
 ```
 
+### Firebase へデプロイ
+
+```bash
+$ firebase deploy --project <projectId>
+```
