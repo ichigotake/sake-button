@@ -2,25 +2,26 @@
 
 [居酒屋選びで困ったときに押すボタン](https://sake-button-cbb77.firebaseapp.com)
 
+[![CircleCI](https://circleci.com/gh/ichigotake/sake-button.svg?style=svg)](https://circleci.com/gh/ichigotake/sake-button)
+
 ## Getting started
 
 ### セットアップ
 
 ```bash
-$ npm install -g firebase-tools
+$ npm init
 $ cd functions && npm install && cd ..
-$ firebase login
-$ firebase use --add
 ```
 
 ### サーバーを起動する
 
 ```bash
-$ firebase serve
+$ npm start
 ```
 
 ### Firebase へデプロイ
 
 ```bash
-$ firebase deploy --project <projectId>
+$ $(npm bin)/firebase login:ci
+$ FIREBASE_PROJECT=your_project_name FIREBASE_DEPLOY_TOKEN=your_token npm run deploy
 ```

@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "name": "sake-button",
+  "version": "1.0.0",
+  "description": "[居酒屋選びで困ったときに押すボタン](https://sake-button-cbb77.firebaseapp.com)",
+  "main": "index.js",
+  "dependencies": {
+    "firebase-tools": "^3.14.0"
+  },
+  "devDependencies": {
+    "firebase-tools": "^3.14.0"
+  },
+  "scripts": {
+    "deploy": "firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --project=$FIREBASE_PROJECT",
+    "deps": "cd functions && npm install",
+    "init": "npm run deps && npm run login",
+    "login": "firebase login && firebase use --add",
+    "start": "firebase serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ichigotake/sake-button.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ichigotake/sake-button/issues"
+  },
+  "homepage": "https://github.com/ichigotake/sake-button#readme"
+}
