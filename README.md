@@ -7,20 +7,19 @@
 ### セットアップ
 
 ```bash
-$ npm install -g firebase-tools
+$ npm init
 $ cd functions && npm install && cd ..
-$ firebase login
-$ firebase use --add
 ```
 
 ### サーバーを起動する
 
 ```bash
-$ firebase serve
+$ npm start
 ```
 
 ### Firebase へデプロイ
 
 ```bash
-$ firebase deploy --project <projectId>
+$ $(npm bin)/firebase login:ci
+$ FIREBASE_DEPLOY_TOKEN=your_token npm run deploy
 ```
