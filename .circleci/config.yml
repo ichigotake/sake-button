@@ -1,12 +1,20 @@
 version: 2
 jobs:
   build-job:
+    working_directory: ~/app
     docker:
       - image: circleci/node:6.11
     steps:
+      - checkout
+      - restore_cache:
+          key: projectname-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
           name: Deploy Master to Firebase
           command: npm run deploy
+      - save_cache:
+          key: projectname-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/app/node_modules
 
 workflows:
   version: 2
