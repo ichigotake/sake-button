@@ -21,5 +21,5 @@ $ npm start
 
 ```bash
 $ $(npm bin)/firebase login:ci
-$ FIREBASE_DEPLOY_TOKEN=your_token npm run deploy
+$ FIREBASE_PROJECT=your_project_name FIREBASE_DEPLOY_TOKEN=your_token npm run deploy
 ```
