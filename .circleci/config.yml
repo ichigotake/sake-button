@@ -5,8 +5,8 @@ jobs:
       - image: circleci/node:6.11
     steps:
       - run:
-        name: Deploy Master to Firebase
-        command: npm run deploy
+          name: Deploy Master to Firebase
+          command: npm run deploy
 
 workflows:
   version: 2
