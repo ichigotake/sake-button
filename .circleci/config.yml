@@ -13,9 +13,9 @@ jobs:
           command: npm install && npm run deps
       - run:
           name: Deploy Master to Firebase
-          command: npm run deploy
+          command: npm run deploy -- --non-interactive
       - save_cache:
-          key: sake-button-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: asake-button-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "functions/package.json" }}
           paths:
             - ~/app/node_modules
 
