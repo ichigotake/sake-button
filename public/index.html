@@ -7,20 +7,16 @@
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.6.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/4.6.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/4.6.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/4.6.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/4.6.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
 
     <style media="screen">
       body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
       #message { background: white; max-width: 380px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
       #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
       #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message button { margin: 0 auto; display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message button { overflow: hidden; margin: 0 auto; display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
       #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
       #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
       footer { text-align: center; }
@@ -28,12 +24,28 @@
         body, #message { margin-top: 0; background: white; box-shadow: none; }
         body { border-top: 16px solid #ffa100; }
       }
+
+      /* https://kuroeveryday.blogspot.jp/2017/08/marquee-with-css-animation.html */
+      .marquee {
+        animation-name: marquee;
+        animation-timing-function: linear;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        display: inline-block;
+        white-space:nowrap;
+        padding-left: 100%;
+      }
+
+      @keyframes marquee {
+        from { transform: translate(0); }
+        to { transform: translate(-100%); }
+      }
     </style>
   </head>
   <body>
     <div id="message">
       <h1>居酒屋選びで困ったときに押すボタン</h1>
-      <button id="pick">🍶🍶🍶</button>
+      <button id="pick"><span class="sake">🍶🍶🍶</span></button>
       <div id="result" style="display: hidden;"></div>
     </div>
     <p id="load">Loading...</p>
@@ -55,30 +67,45 @@
 
         try {
           let app = firebase.app();
-          document.getElementById('load').innerHTML = ``;
+          $('#load').text('')
         } catch (e) {
           console.error(e);
-          document.getElementById('load').innerHTML = '⚠ Error ⚠';
+          $('#load').text('⚠ Error ⚠');
         }
+        $('#pick').on('click', function(){
+          var $sake = $('.sake');
+          var startTime = new Date().getTime();
+          $.ajax({
+            type: 'GET',
+            url: '/pick',
+            timeout: 10 * 1000,
+            beforeSend: function() {
+              $sake.addClass('marquee');
+            },
+            success: function(data){
+              let picked = JSON.parse(data);
+              function timer() {
+                endTime = new Date().getTime();
+                if (endTime - startTime > 2500) {
+                  let $result = $('#result');
+                  $result.html('<a href="' + picked.url + '"></a>')
+                    .find('a')
+                    .click();
+                } else {
+                  setTimeout(timer, 500);
+                }
+              }
+              var timerId = setTimeout(timer, 500);
+              timer();
+            },
+            error: function() {
+              $sake.removeClass('marquee');
+              $('#picked').text('⚠ ERROR ⚠');
+            },
+            complete: function(){
+            }});
+        });
       });
-
-      document.getElementById('pick').onclick = function () {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState == XMLHttpRequest.DONE) {
-            if (xhr.status == 200) {
-              let picked = JSON.parse(xhr.responseText);
-              let result = document.getElementById('result');
-              result.innerHTML = '<a href="' + picked.url + '"></a>';
-              result.getElementsByTagName('a')[0].click();
-            } else {
-              document.getElementById('picked').innerHTML = '⚠ ERROR ⚠';
-            }
-          }
-        };
-        xhr.open('GET', '/pick', true);
-        xhr.send();
-      };
     </script>
   </body>
 </html>
