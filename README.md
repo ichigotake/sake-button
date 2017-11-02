@@ -9,8 +9,7 @@
 ### セットアップ
 
 ```bash
-$ npm init
-$ cd functions && npm install && cd ..
+$ npm install && npm init
 ```
 
 ### サーバーを起動する
