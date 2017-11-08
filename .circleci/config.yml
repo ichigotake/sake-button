@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: asake-button-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "functions/package.json" }}
+          key: sake-button-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "functions/package.json" }}
       - run:
           name: Install dependencies
           command: npm install && npm run deps
@@ -15,7 +15,7 @@ jobs:
           name: Deploy Master to Firebase
           command: npm run deploy -- --non-interactive
       - save_cache:
-          key: asake-button-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "functions/package.json" }}
+          key: sake-button-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "functions/package.json" }}
           paths:
             - ~/app/node_modules
 
