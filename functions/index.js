@@ -14,6 +14,7 @@ exports.pick = functions.https.onRequest((request, response) => {
     'https://tabelog.com/tokyo/A1316/A131603/13122590/',
     'https://tabelog.com/tokyo/A1310/A131001/13171817/',
     'http://sake-genkabar.com/',
+    'https://tabelog.com/tokyo/A1304/A130401/13203013/',
   ];
   let picked = {
     url: urls[Math.floor(Math.random() * urls.length)],
