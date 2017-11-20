@@ -14,6 +14,7 @@ const urls = [
   'https://tabelog.com/tokyo/A1310/A131001/13171817/',
   'http://sake-genkabar.com/',
   'https://tabelog.com/tokyo/A1304/A130401/13203013/',
+  'https://r.gnavi.co.jp/p746600/',
 ];
 
 exports.pick = functions.https.onRequest((request, response) => {
