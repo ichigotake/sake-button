@@ -16,6 +16,7 @@ const urls = [
   'https://tabelog.com/tokyo/A1304/A130401/13203013/',
   'https://r.gnavi.co.jp/p746600/',
   'https://r.gnavi.co.jp/kakoiya7/',
+  'https://tabelog.com/tokyo/A1310/A131001/13143375',
 ];
 
 exports.pick = functions.https.onRequest((request, response) => {
