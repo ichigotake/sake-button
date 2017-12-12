@@ -1,6 +1,6 @@
 # sake-button
 
-[居酒屋選びで困ったときに押すボタン](https://sake-button-cbb77.firebaseapp.com)
+[居酒屋選びで困ったときに押すボタン](https://sake-button.ichigotake.net/)
 
 [![CircleCI](https://circleci.com/gh/ichigotake/sake-button.svg?style=svg)](https://circleci.com/gh/ichigotake/sake-button)
 
