@@ -11,7 +11,7 @@
     "firebase-tools": "^3.14.0"
   },
   "scripts": {
-    "deploy": "firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --project=$FIREBASE_PROJECT",
+    "deploy": "firebase deploy --token=\"$FIREBASE_DEPLOY_TOKEN\" --project=$FIREBASE_PROJECT",
     "deps": "cd functions && npm install",
     "init": "npm run deps && npm run login",
     "login": "firebase login && firebase use --add",
